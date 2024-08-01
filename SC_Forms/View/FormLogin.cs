@@ -33,6 +33,7 @@ namespace SC_Forms
             var client = new MongoClient(connstr);
 
 
+
             //using (SC_DbContext SC_Db = new SC_DbContext())
             //{
             //    var existingUser = SC_Db.Users.FirstOrDefault(u => u.Acct == this.tbAcct.Text && u.pwd == this.tbPwd.Text);

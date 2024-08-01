@@ -1,4 +1,6 @@
 
+using MongoDB.Driver;
+using SC_Forms.Helper;
 using System.Diagnostics;
 namespace SC_Forms
 {
@@ -41,7 +43,12 @@ namespace SC_Forms
             }
             */
 
-            FormsHelper.AddForm("Login",new FormLogin());
+            MongoDbHelper.Instance().conneStr = "mongodb://localhost:27017";
+            MongoDbHelper.Instance().dbName = "Test";
+            MongoDbHelper.Instance().collName = "Users";
+            MongoClient m =  MongoDbHelper.Instance().Client;
+
+			FormsHelper.AddForm("Login",new FormLogin());
 
             Application.Run(FormsHelper.GetForm("Login"));
 
