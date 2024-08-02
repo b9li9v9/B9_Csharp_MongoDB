@@ -19,7 +19,7 @@ namespace SC_Forms
         public bool IsDeleted { get; set; }
 
         // 组织管理树导航
-        public NavOrgUnits? navOrgUnits { get; set; }
+        public NavOrgUnits navOrgUnits = new NavOrgUnits();
 
         // 构造函数初始化AssociatedOrgUnits，以避免null引用异常
         //public User()

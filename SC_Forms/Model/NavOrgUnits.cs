@@ -8,9 +8,9 @@ namespace SC_Forms
 {
     internal class NavOrgUnits
     {
-        public List<OrgUnit> RootNodes { get; set; }
-        public List<OrgUnit> SelfNodes { get; set; }
-        public List<OrgUnit> ChildNodes { get; set; }
+        public List<OrgUnit> RootNodes = new List<OrgUnit> ();
+        public List<OrgUnit> SelfNodes = new List<OrgUnit>();
+        public List<OrgUnit> ChildNodes = new List<OrgUnit>();
 
         //public NavOrgUnits()
         //{

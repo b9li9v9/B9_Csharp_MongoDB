@@ -1,7 +1,10 @@
 
+using MongoDB.Bson;
 using MongoDB.Driver;
 using SC_Forms.Helper;
+using System;
 using System.Diagnostics;
+using System.Reflection;
 namespace SC_Forms
 {
     internal static class Program
@@ -43,17 +46,82 @@ namespace SC_Forms
             }
             */
 
-            MongoDbHelper.Instance().conneStr = "mongodb://localhost:27017";
-            MongoDbHelper.Instance().dbName = "Test";
-            MongoDbHelper.Instance().collName = "Users";
-            MongoClient m =  MongoDbHelper.Instance().Client;
 
-			FormsHelper.AddForm("Login",new FormLogin());
+
+
+            //写入
+            //var user = MongoDbHelper.GetClient().GetDatabase("TestDB").GetCollection<User>("Users").Find(u=>u.Acct=="avc").FirstOrDefault();
+
+            //user.Acct = "avc";
+            //user.Nick = "avc";
+            //user.pwd = "av";
+            //user.IsDeleted = false;
+
+
+            //user.navOrgUnits.RootNodes.Add(new OrgUnit()
+            //{
+            //    EmpName = "bb",
+            //    OrgName = "bb",
+            //    OwnerId = 1,
+            //    IsDeleted = false,
+            //    ParentGuid = null,
+            //    AV = true
+            //});
+            //MongoDbHelper.GetClient().GetDatabase("TestDB").GetCollection<User>("Users").UpdateOne(user);
+            //PrintObjectProperties(u);
+
+
+            //文档类
+            var collection = MongoDbHelper.GetClient().GetDatabase("TestDB").GetCollection<User>("Users");
+
+            // 查询条件
+            var filter = Builders<User>.Filter.Eq(u => u.Acct, "avc");
+
+            // 执行查询
+            var user = collection.Find(filter).FirstOrDefault();
+
+            if (user != null)
+            {
+                var o = new OrgUnit()
+                {
+                    EmpName = "bb",
+                    OrgName = "bb",
+                    OwnerId = 1,
+                    IsDeleted = false,
+                    ParentGuid = null,
+                    AV = true
+                };
+
+                // 向集合列表中添加新纪录
+                user.navOrgUnits.RootNodes.Add(o);
+
+                // 更新操作
+                var update = Builders<User>.Update.Set(u => u.navOrgUnits.RootNodes, user.navOrgUnits.RootNodes);
+
+                // 执行更新
+                collection.UpdateOne(filter, update);
+            }
+
+
+
+            FormsHelper.AddForm("Login", new FormLogin());
 
             Application.Run(FormsHelper.GetForm("Login"));
 
 
 
+        }
+
+        static void PrintObjectProperties(object obj)
+        {
+            Type type = obj.GetType();
+            PropertyInfo[] properties = type.GetProperties();
+
+            foreach (PropertyInfo property in properties)
+            {
+                object value = property.GetValue(obj);
+                Debug.WriteLine($"type:{value.GetType()} {property.Name}: {value}");
+            }
         }
     }
 }
