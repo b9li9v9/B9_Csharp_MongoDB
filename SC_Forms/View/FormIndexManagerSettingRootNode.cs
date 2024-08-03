@@ -29,7 +29,6 @@ namespace SC_Forms
         //private SC_DbContext SC_DB;
         private IMongoCollection<OrgUnit> OrgUnitsCollection = MongoDbHelper.GetClient().GetDatabase("TestDB").GetCollection<OrgUnit>("OrgUnits");
         private IMongoCollection<User> UsersCollection = MongoDbHelper.GetClient().GetDatabase("TestDB").GetCollection<User>("Users");
-
         private List<OrgUnit> OrgUnitsTable;
         public FormIndexManagerSettingRootNode()
         {
@@ -42,7 +41,9 @@ namespace SC_Forms
         //    this.dataGridView1.DataSource = OrgUnitsTable;
         //}
 
-        // 获取数据库表
+        // 获取数据库表 √
+
+        // 取表数据 √
         private List<OrgUnit> GetTable()
         {
             OrgUnitsTable = OrgUnitsCollection.AsQueryable()
@@ -51,7 +52,7 @@ namespace SC_Forms
             return OrgUnitsTable;
         }
 
-        // 修改
+        // 修改 √
         private void button1_Click(object sender, EventArgs e)
         {
             //if (SC_DB == null) return;
@@ -172,6 +173,7 @@ namespace SC_Forms
             btn_Query_Click(null, null);
         }
 
+        //bsonid检测 √
         private bool IsValidObjectId(string str)
         {
             try
