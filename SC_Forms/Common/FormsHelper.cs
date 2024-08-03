@@ -9,7 +9,7 @@ namespace SC_Forms
 {
     internal static class FormsHelper
     {
-        public static long UserId;
+        public static string UserId;
         //持久化窗口
         private static Dictionary<string,Form> FormsDict = new Dictionary<string, Form>();
         //一次性窗口

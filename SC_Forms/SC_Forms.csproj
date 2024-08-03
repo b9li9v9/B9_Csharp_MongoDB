@@ -9,20 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="FormIndex.cs" />
-    <Compile Remove="FormIndex.Designer.cs" />
     <Compile Remove="FormIndexManagerSettingChildNode.cs" />
     <Compile Remove="FormIndexManagerSettingChildNode.Designer.cs" />
-    <Compile Remove="FormIndexManagerSettingRootNote.cs" />
-    <Compile Remove="FormIndexManagerSettingRootNote.Designer.cs" />
     <Compile Remove="FormIndexManagerSettingSelfNode.cs" />
     <Compile Remove="FormIndexManagerSettingSelfNode.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Remove="FormIndex.resx" />
     <EmbeddedResource Remove="FormIndexManagerSettingChildNode.resx" />
-    <EmbeddedResource Remove="FormIndexManagerSettingRootNote.resx" />
     <EmbeddedResource Remove="FormIndexManagerSettingSelfNode.resx" />
   </ItemGroup>
 

@@ -1,8 +1,10 @@
 ﻿
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -18,6 +20,7 @@ namespace SC_Forms
             InitializeComponent();
         }
 
+
         private void btnCancel_Click(object sender, EventArgs e)
         {
             FormsHelper.ShowSingleForm("Login");
@@ -27,10 +30,31 @@ namespace SC_Forms
         {
             if (this.tbAcct.Text == "" || this.tbPwd.Text == "")
             {
-                MessageBox.Show("账号、密码、");
+                MessageBox.Show("账号、密码、不得为空");
                 return;
             }
 
+            var collection = MongoDbHelper.GetClient().GetDatabase("TestDB").GetCollection<User>("Users");
+
+            var t = collection.AsQueryable()
+    .Where(u => u.Acct == tbAcct.Text).FirstOrDefault();
+            Debug.WriteLine(t);
+
+            if (t == null)
+            {
+                var user = new User();
+                user.Acct = tbAcct.Text;
+                user.Nick = tbNick.Text;
+                user.pwd = tbPwd.Text;
+                user.IsDeleted = false;
+                collection.InsertOne(user);
+                MessageBox.Show("注册成功！");
+                FormsHelper.DisposableFormsDict["registered"].Close();
+            }
+            else
+            {
+                MessageBox.Show("该账户已存在");
+            }
             //using (SC_DbContext SC_Db = new SC_DbContext())
             //{
 
@@ -54,5 +78,10 @@ namespace SC_Forms
             //    }
             //}
         }
+
+        //private void FormRegistered_Load(object sender, EventArgs e)
+        //{
+        //    this.TopMost = true;  // 将窗口置于最前面
+        //}
     }
 }

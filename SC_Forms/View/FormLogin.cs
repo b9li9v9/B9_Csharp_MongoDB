@@ -3,6 +3,7 @@ using MongoDB.Driver.Core.Configuration;
 using MongoDB.Driver;
 using System.Data.Common;
 using MongoDB.Bson;
+using System.Diagnostics;
 
 namespace SC_Forms
 {
@@ -29,9 +30,16 @@ namespace SC_Forms
                 return;
             }
 
-            string connstr = @"mongodb://localhost:27017";
-            var client = new MongoClient(connstr);
+            var collection = MongoDbHelper.GetClient().GetDatabase("TestDB").GetCollection<User>("Users");
+            var user = collection.AsQueryable()
+                .Where(u => u.Acct == tbAcct.Text).FirstOrDefault();
 
+            if (user != null) {
+                FormsHelper.UserId = user.UserId;
+                FormsHelper.AddForm("Index", new FormIndex());
+                FormsHelper.ShowSingleForm("Index");
+                MessageBox.Show($"hi,{user.Nick}");
+            }
 
 
             //using (SC_DbContext SC_Db = new SC_DbContext())

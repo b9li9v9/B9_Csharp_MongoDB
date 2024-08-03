@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
-namespace SC_Forms.Helper
+namespace SC_Forms
 {
     internal sealed class MongoDbHelper
     {

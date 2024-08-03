@@ -1,6 +1,6 @@
 ﻿namespace SC_Forms
 {
-    partial class FormIndexManagerSettingRootNote
+    partial class FormIndexManagerSettingRootNode
     {
         /// <summary>
         /// Required designer variable.
@@ -35,15 +35,12 @@
             button3 = new Button();
             button2 = new Button();
             button1 = new Button();
-            Guid = new DataGridViewTextBoxColumn();
-            NavOwnerId = new DataGridViewTextBoxColumn();
-            NavParent = new DataGridViewTextBoxColumn();
-            NavChildrens = new DataGridViewTextBoxColumn();
+            OrgUnitId = new DataGridViewTextBoxColumn();
             EmpName = new DataGridViewTextBoxColumn();
             OrgName = new DataGridViewTextBoxColumn();
             OwnerId = new DataGridViewTextBoxColumn();
             IsDeleted = new DataGridViewTextBoxColumn();
-            ParentGuid = new DataGridViewTextBoxColumn();
+            ParentId = new DataGridViewTextBoxColumn();
             AV = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
@@ -79,7 +76,7 @@
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Guid, NavOwnerId, NavParent, NavChildrens, EmpName, OrgName, OwnerId, IsDeleted, ParentGuid, AV });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { OrgUnitId, EmpName, OrgName, OwnerId, IsDeleted, ParentId, AV });
             dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.Location = new Point(0, 0);
             dataGridView1.Name = "dataGridView1";
@@ -115,7 +112,7 @@
             button3.TabIndex = 2;
             button3.Text = "查询";
             button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
+            button3.Click += btn_Query_Click;
             // 
             // button2
             // 
@@ -137,33 +134,12 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
-            // Guid
+            // OrgUnitId
             // 
-            Guid.DataPropertyName = "Guid";
-            Guid.HeaderText = "唯一识别";
-            Guid.Name = "Guid";
-            Guid.ReadOnly = true;
-            // 
-            // NavOwnerId
-            // 
-            NavOwnerId.DataPropertyName = "NavOwnerId";
-            NavOwnerId.HeaderText = "NavOwnerId";
-            NavOwnerId.Name = "NavOwnerId";
-            NavOwnerId.Visible = false;
-            // 
-            // NavParent
-            // 
-            NavParent.DataPropertyName = "NavParent";
-            NavParent.HeaderText = "NavParent";
-            NavParent.Name = "NavParent";
-            NavParent.Visible = false;
-            // 
-            // NavChildrens
-            // 
-            NavChildrens.DataPropertyName = "NavChildrens";
-            NavChildrens.HeaderText = "NavChildrens";
-            NavChildrens.Name = "NavChildrens";
-            NavChildrens.Visible = false;
+            OrgUnitId.DataPropertyName = "OrgUnitId";
+            OrgUnitId.HeaderText = "组织代码";
+            OrgUnitId.Name = "OrgUnitId";
+            OrgUnitId.ReadOnly = true;
             // 
             // EmpName
             // 
@@ -190,12 +166,12 @@
             IsDeleted.Name = "IsDeleted";
             IsDeleted.Visible = false;
             // 
-            // ParentGuid
+            // ParentId
             // 
-            ParentGuid.DataPropertyName = "ParentGuid";
-            ParentGuid.HeaderText = "父节点";
-            ParentGuid.Name = "ParentGuid";
-            ParentGuid.Visible = false;
+            ParentId.DataPropertyName = "ParentId";
+            ParentId.HeaderText = "父节点";
+            ParentId.Name = "ParentId";
+            ParentId.Visible = false;
             // 
             // AV
             // 
@@ -229,15 +205,12 @@
         private Button button3;
         private Button btnRegistered;
         private Button button4;
-        private DataGridViewTextBoxColumn Guid;
-        private DataGridViewTextBoxColumn NavOwnerId;
-        private DataGridViewTextBoxColumn NavParent;
-        private DataGridViewTextBoxColumn NavChildrens;
+        private DataGridViewTextBoxColumn OrgUnitId;
         private DataGridViewTextBoxColumn EmpName;
         private DataGridViewTextBoxColumn OrgName;
         private DataGridViewTextBoxColumn OwnerId;
         private DataGridViewTextBoxColumn IsDeleted;
-        private DataGridViewTextBoxColumn ParentGuid;
+        private DataGridViewTextBoxColumn ParentId;
         private DataGridViewTextBoxColumn AV;
     }
 }

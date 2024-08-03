@@ -36,18 +36,18 @@ namespace SC_Forms
         // 根节点管理
         private void menuNodeManager_Click(object sender, EventArgs e)
         {
-            FormsManager.UseDisposableForm("LoadRootNode", new FormIndexManagerSettingRootNote());
+            FormsHelper.UseDisposableForm("LoadRootNode", new FormIndexManagerSettingRootNode());
         }
 
         // 本节点读取
         private void menuSelfNode_Click(object sender, EventArgs e)
         {
-            FormsManager.UseDisposableForm("LoadSelfNode", new FormIndexManagerSettingSelfNode());
+            //FormsHelper.UseDisposableForm("LoadSelfNode", new FormIndexManagerSettingSelfNode());
         }
 
         private void 查询子节点ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormsManager.UseDisposableForm("LoadChildNode", new FormIndexManagerSettingChildNode());
+            //FormsHelper.UseDisposableForm("LoadChildNode", new FormIndexManagerSettingChildNode());
         }
     }
 }

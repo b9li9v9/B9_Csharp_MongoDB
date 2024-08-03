@@ -1,7 +1,6 @@
 
 using MongoDB.Bson;
 using MongoDB.Driver;
-using SC_Forms.Helper;
 using System;
 using System.Diagnostics;
 using System.Reflection;
@@ -71,36 +70,36 @@ namespace SC_Forms
             //PrintObjectProperties(u);
 
 
-            //文档类
-            var collection = MongoDbHelper.GetClient().GetDatabase("TestDB").GetCollection<User>("Users");
+            ////文档类
+            //var collection = MongoDbHelper.GetClient().GetDatabase("TestDB").GetCollection<User>("Users");
 
-            // 查询条件
-            var filter = Builders<User>.Filter.Eq(u => u.Acct, "avc");
+            //// 查询条件
+            //var filter = Builders<User>.Filter.Eq(u => u.Acct, "avc");
 
-            // 执行查询
-            var user = collection.Find(filter).FirstOrDefault();
+            //// 执行查询
+            //var user = collection.Find(filter).FirstOrDefault();
 
-            if (user != null)
-            {
-                var o = new OrgUnit()
-                {
-                    EmpName = "bb",
-                    OrgName = "bb",
-                    OwnerId = 1,
-                    IsDeleted = false,
-                    ParentGuid = null,
-                    AV = true
-                };
+            //if (user != null)
+            //{
+            //    var o = new OrgUnit()
+            //    {
+            //        EmpName = "bb",
+            //        OrgName = "bb",
+            //        OwnerId = 1,
+            //        IsDeleted = false,
+            //        ParentGuid = null,
+            //        AV = true
+            //    };
 
-                // 向集合列表中添加新纪录
-                user.navOrgUnits.RootNodes.Add(o);
+            //    // 向集合列表中添加新纪录
+            //    user.navOrgUnits.RootNodes.Add(o);
 
-                // 更新操作
-                var update = Builders<User>.Update.Set(u => u.navOrgUnits.RootNodes, user.navOrgUnits.RootNodes);
+            //    // 更新操作
+            //    var update = Builders<User>.Update.Set(u => u.navOrgUnits.RootNodes, user.navOrgUnits.RootNodes);
 
-                // 执行更新
-                collection.UpdateOne(filter, update);
-            }
+            //    // 执行更新
+            //    collection.UpdateOne(filter, update);
+            //}
 
 
 
