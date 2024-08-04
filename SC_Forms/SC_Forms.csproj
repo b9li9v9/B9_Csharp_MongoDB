@@ -9,18 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="FormIndexManagerSettingChildNode.cs" />
-    <Compile Remove="FormIndexManagerSettingChildNode.Designer.cs" />
-    <Compile Remove="FormIndexManagerSettingSelfNode.cs" />
-    <Compile Remove="FormIndexManagerSettingSelfNode.Designer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Remove="FormIndexManagerSettingChildNode.resx" />
-    <EmbeddedResource Remove="FormIndexManagerSettingSelfNode.resx" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="MongoDB.Driver" Version="2.28.0" />
   </ItemGroup>
 

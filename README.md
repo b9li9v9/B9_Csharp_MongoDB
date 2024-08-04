@@ -100,9 +100,12 @@ await collection.UpdateOneAsync(filter, update);
 ```
 想法
     https://www.nuget.org/ 
-    嵌套的越深越难处理
+    
+    240803嵌套的越深越难处理
     每个用户都有一个User记录
     每个User都有一个唯一识别
     所有的表共用这个唯一识别，就可以不嵌套
     User是主表，非User是副表，副表要有两个主键
+
+    240804 没有设计导航 无法像EFCore递归控制权限.. 弃工跳学rabbitmq
 ```

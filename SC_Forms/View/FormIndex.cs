@@ -39,15 +39,16 @@ namespace SC_Forms
             FormsHelper.UseDisposableForm("LoadRootNode", new FormIndexManagerSettingRootNode());
         }
 
-        // 本节点读取
-        private void menuSelfNode_Click(object sender, EventArgs e)
+		// 本节点管理
+		private void menuSelfNode_Click(object sender, EventArgs e)
         {
-            //FormsHelper.UseDisposableForm("LoadSelfNode", new FormIndexManagerSettingSelfNode());
+            FormsHelper.UseDisposableForm("LoadSelfNode", new FormIndexManagerSettingSelfNode());
         }
 
-        private void 查询子节点ToolStripMenuItem_Click(object sender, EventArgs e)
+		// 子节点管理
+		private void 查询子节点ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //FormsHelper.UseDisposableForm("LoadChildNode", new FormIndexManagerSettingChildNode());
+            FormsHelper.UseDisposableForm("LoadChildNode", new FormIndexManagerSettingChildNode());
         }
     }
 }
