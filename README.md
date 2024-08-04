@@ -2,114 +2,113 @@
 .
 mongodb
 
-»ù±¾ÅäÖÃ
-1. ÏÂÔØmongodb mongodbshell mongodbGUI / NuGet Install-package MongoDB.Driver
-2. Æô¶¯db  mongod.exe --dbpath "path"
+åŸºæœ¬é…ç½®
+1. ä¸‹è½½mongodb mongodbshell mongodbGUI / NuGet Install-package MongoDB.Driver
+2. å¯åŠ¨db  mongod.exe --dbpath "path"
 
 google AI
 https://aistudio.google.com/app/prompts/new_chat
 
-ÒÀÀµ×¢Èë-·şÎñ¶¨Î»Æ÷
+ä¾èµ–æ³¨å…¥-æœåŠ¡å®šä½å™¨
 1.NuGet Install-package Microsoft.Extensions.DependencyInjection
 2.using Microsoft.Extensions.DependencyInjection
-3.ÈİÆ÷×¢²á ServiceCollection services = new ServiceCollection()  
-	services.AddTransient<class>() Ë²Ì¬
-	services.AddSingleton<class>() µ¥Àı
-	services.AddScoped<class>() ·¶Î§
-4.¹¹½¨  services.BuildServiceProvider()
+3.å®¹å™¨æ³¨å†Œ ServiceCollection services = new ServiceCollection()  
+	services.AddTransient<class>() ç¬æ€
+	services.AddSingleton<class>() å•ä¾‹
+	services.AddScoped<class>() èŒƒå›´
+4.æ„å»º  services.BuildServiceProvider()
 
 rabbitmq
 
-Ô­ÉúCLI
-´´½¨¿â use "dbname"
-´´½¨±í db.createCollection("collectionname")
-²åÈë  db.CName.insertMany([{...},{...}])
+åŸç”ŸCLI
+åˆ›å»ºåº“ use "dbname"
+åˆ›å»ºè¡¨ db.createCollection("collectionname")
+æ’å…¥  db.CName.insertMany([{...},{...}])
 
-²éÑ¯  db.CName.find().pretty()   find({Ìõ¼ş..})
-// ²éÑ¯ËùÓĞÎÄµµ
+æŸ¥è¯¢  db.CName.find().pretty()   find({æ¡ä»¶..})
+// æŸ¥è¯¢æ‰€æœ‰æ–‡æ¡£
 db.users.find() 
-// ²éÑ¯ "name"  Îª "John Doe" µÄÎÄµµ
+// æŸ¥è¯¢ "name"  ä¸º "John Doe" çš„æ–‡æ¡£
 db.users.find({ "name": "John Doe" }) 
-// ²éÑ¯ "age" ´óÓÚ 25 µÄÎÄµµ
+// æŸ¥è¯¢ "age" å¤§äº 25 çš„æ–‡æ¡£
 db.users.find({ "age": { "$gt": 25 } })
 
-¸üĞÂ
+æ›´æ–°
 db.collectionName.updateOne(
-    // ²éÑ¯Ìõ¼ş 
+    // æŸ¥è¯¢æ¡ä»¶ 
     { "field1": "value1" }, 
-    // ¸üĞÂÓï¾ä
+    // æ›´æ–°è¯­å¥
     { $set: { "field2": "newValue" } }
 )
-É¾³ı
+åˆ é™¤
 db.collectionName.deleteOne({ 
-    // ²éÑ¯Ìõ¼ş
+    // æŸ¥è¯¢æ¡ä»¶
     "field1": "value1",
     "field2": "value2",
     //  ... 
 })
 
-C# Çı¶¯
-1.¶¨ÒåÊµÌåÀà
+C# é©±åŠ¨
+1.å®šä¹‰å®ä½“ç±»
 
-2.½¨Á¢Á¬½Ó
+2.å»ºç«‹è¿æ¥
 using MongoDB.Driver;
 
-// Á¬½Ó×Ö·û´®
+// è¿æ¥å­—ç¬¦ä¸²
 string connectionString = "mongodb://localhost:27017";
 
-// ´´½¨ MongoClient ¶ÔÏó
+// åˆ›å»º MongoClient å¯¹è±¡
 MongoClient client = new MongoClient(connectionString);
 
-// »ñÈ¡Êı¾İ¿â
+// è·å–æ•°æ®åº“
 var database = client.GetDatabase("your_database_name");
 
-// »ñÈ¡¼¯ºÏ
+// è·å–é›†åˆ
 var collection = database.GetCollection<Person>("people");
 
-²åÈë
-// ´´½¨Ò»¸öĞÂµÄÎÄµµ
+æ’å…¥
+// åˆ›å»ºä¸€ä¸ªæ–°çš„æ–‡æ¡£
 var newPerson = new Person { Name = "John Doe", Age = 30 };
-// ²åÈëµ½¼¯ºÏÖĞ
+// æ’å…¥åˆ°é›†åˆä¸­
 await collection.InsertOneAsync(newPerson);
 
-²éÑ¯
-// ²éÑ¯ËùÓĞÎÄµµ
+æŸ¥è¯¢
+// æŸ¥è¯¢æ‰€æœ‰æ–‡æ¡£
 var allPeople = await collection.Find(_ => true).ToListAsync(); 
-// ²éÑ¯ÌØ¶¨Ìõ¼şµÄÎÄµµ
+// æŸ¥è¯¢ç‰¹å®šæ¡ä»¶çš„æ–‡æ¡£
 var peopleByName = await collection.Find(x => x.Name == "John Doe").ToListAsync();
-// ²éÑ¯µÚÒ»¸öÆ¥ÅäÌõ¼şµÄÎÄµµ
+// æŸ¥è¯¢ç¬¬ä¸€ä¸ªåŒ¹é…æ¡ä»¶çš„æ–‡æ¡£
 var firstPerson = await collection.Find(x => x.Name == "John Doe").FirstOrDefaultAsync();
 
-É¾³ı
-// Ê¹ÓÃ¹ıÂËÌõ¼ş¶¨Î»ÎÄµµ
+åˆ é™¤
+// ä½¿ç”¨è¿‡æ»¤æ¡ä»¶å®šä½æ–‡æ¡£
 var filter = Builders<Person>.Filter.Eq(x => x.Name, "John Doe");
-// É¾³ıÆ¥ÅäµÄÎÄµµ
+// åˆ é™¤åŒ¹é…çš„æ–‡æ¡£
 await collection.DeleteOneAsync(filter);
 
-¸üĞÂ
-// Ê¹ÓÃ¹ıÂËÌõ¼ş¶¨Î»ÎÄµµ
+æ›´æ–°
+// ä½¿ç”¨è¿‡æ»¤æ¡ä»¶å®šä½æ–‡æ¡£
 var filter = Builders<Person>.Filter.Eq(x => x.Name, "John Doe"); 
-// Ê¹ÓÃ¸üĞÂÓï¾äÉèÖÃĞÂÖµ
+// ä½¿ç”¨æ›´æ–°è¯­å¥è®¾ç½®æ–°å€¼
 var update = Builders<Person>.Update.Set(x => x.Age, 35);
-// Ö´ĞĞ¸üĞÂ²Ù×÷
+// æ‰§è¡Œæ›´æ–°æ“ä½œ
 await collection.UpdateOneAsync(filter, update); 
 
 
 ```
 
 ```
-Ïë·¨
+æƒ³æ³•
     https://www.nuget.org/ 
     
     240803
-    Ç¶Ì×µÄÔ½ÉîÔ½ÄÑ´¦Àí
-    Ã¿¸öÓÃ»§¶¼ÓĞÒ»¸öUser¼ÇÂ¼
-    Ã¿¸öUser¶¼ÓĞÒ»¸öÎ¨Ò»Ê¶±ğ
-    ËùÓĞµÄ±í¹²ÓÃÕâ¸öÎ¨Ò»Ê¶±ğ£¬¾Í¿ÉÒÔ²»Ç¶Ì×
-    UserÊÇÖ÷±í£¬·ÇUserÊÇ¸±±í£¬¸±±íÒªÓĞÁ½¸öÖ÷¼ü
+    åµŒå¥—çš„è¶Šæ·±è¶Šéš¾å¤„ç†
+    æ¯ä¸ªç”¨æˆ·éƒ½æœ‰ä¸€ä¸ªUserè®°å½•
+    æ¯ä¸ªUseréƒ½æœ‰ä¸€ä¸ªå”¯ä¸€è¯†åˆ«
+    å¯ä»¥ç”¨é€»è¾‘ä¸»é”®
 
     240804 
-    Ã»ÓĞÉè¼Æµ¼º½ ÎŞ·¨ÏñEFCoreµİ¹é¿ØÖÆÈ¨ÏŞ.. 
-    Ò²ÄÜĞ´µ«ºÜ³ô
-    Æú¹¤ÌøÑ§rabbitmq
+    æ²¡æœ‰è®¾è®¡å¯¼èˆª æ— æ³•åƒEFCoreé€’å½’æ§åˆ¶æƒé™.. 
+    ä¹Ÿèƒ½å†™ä½†å¾ˆè‡­
+    å¼ƒå·¥è·³å­¦rabbitmq
 ```
